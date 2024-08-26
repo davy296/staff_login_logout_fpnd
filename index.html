@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Login System</title>
+    <script>
+        // Function to get the user's location
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(sendLocationToForm, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Function to handle the geolocation data
+        function sendLocationToForm(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            // Set hidden fields with latitude and longitude values
+            document.getElementById('latitude').value = latitude;
+            document.getElementById('longitude').value = longitude;
+        }
+
+        // Error handler for geolocation
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        // Automatically get location on page load
+        window.onload = function() {
+            getLocation();
+        };
+    </script>
+</head>
+<body>
+    <h2>Staff Login System</h2>
+    
+    <!-- Form to submit Name and Action to Google Form -->
+    <form id="loginForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfqWKy_Ei0bdLbTXmmUgs2fiY2MvXDgRdcUY1g3XJvdf3LLIg/viewform?usp=sf_link" method="post" target="hidden_iframe" onsubmit="submitted=true;">
+        
+        <!-- Dropdown menu for selecting name -->
+        <label for="name">Name:</label>
+        <select name="entry.13345612" id="name" required>
+            <option value="" disabled selected>Select your name</option>
+            <option value="Mr. Davy Sanglala">Mr. Davy Sanglala</option>
+            <option value="Mr. John Sichinga">Mr. John Sichinga</option>
+            <option value="Ms. Grace Kalenga">Ms. Grace Kalenga</option>
+            <option value="Ms. Lesina Phiri">Ms. Lesina Phiri</option>
+            <option value="Dr. Mutenta Nyambe">Dr. Mutenta Nyambe</option>
+            <option value="Dr. Machi Hampango">Dr. Machi Hampango</option>
+            <option value="Ms. Inonge Musonda">Ms. Inonge Musonda</option>
+            <option value="Mr. Mweemba Lameck">Mr. Mweemba Lameck</option>
+            <option value="Mr. Richard Maliye">Mr. Richard Maliye</option>
+            <option value="Mr. Bright Mapiki">Mr. Bright Mapiki</option>
+            <option value="Mr. Mphande Isaac">Mr. Mphande Isaac</option>
+            <option value="Mr. Frank Mukonchi">Mr. Frank Mukonchi</option>
+            <option value="Ms. Angela Chisulo">Ms. Angela Chisulo</option>
+            <option value="Mr. Chola Mumba">Mr. Chola Mumba</option>
+            <option value="Mr. Kalaluka Pearyson">Mr. Kalaluka Pearyson</option>
+            <option value="Mr. Nzala Sikawala">Mr. Nzala Sikawala</option>
+            <option value="Mr. Chibubi">Mr. Chibubi</option>
+            <option value="Ms. Mirriam Mulela">Ms. Mirriam Mulela</option>
+        </select><br><br>
+
+        <!-- Dropdown menu for selecting action (Login/Logout) -->
+        <label for="action">Action:</label>
+        <select name="entry.2112004255" id="action" required>
+            <option value="" disabled selected>Select Action</option>
+            <option value="Login">Login</option>
+            <option value="Logout">Logout</option>
+        </select><br><br>
+
+        <!-- Hidden fields for latitude and longitude -->
+        <input type="hidden" name="entry.1493487833" id="latitude">
+        <input type="hidden" name="entry.1349164592" id="longitude">
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- An iframe to handle form submission without redirecting the user -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+    <p>Please allow location access to continue.</p>
+</body>
+</html>
